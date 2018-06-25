@@ -1,0 +1,4 @@
+/* success.wxss */
+.container{
+  padding:0;
+}

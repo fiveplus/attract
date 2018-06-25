@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ace.dao.CardMapper">
+	<resultMap type="com.ace.entity.Card" id="BaseResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="picture" property="picture" jdbcType="VARCHAR" />
+		<id column="name" property="name" jdbcType="VARCHAR" />
+		<id column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<id column="job" property="job" jdbcType="VARCHAR" />
+		<id column="company_name" property="companyName" jdbcType="VARCHAR" />
+		<id column="email" property="email" jdbcType="VARCHAR" />
+		<id column="websize" property="websize" jdbcType="VARCHAR" />
+		<id column="remark" property="remark" jdbcType="VARCHAR" />
+		<id column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<id column="register_id" property="registerId" jdbcType="INTEGER" />
+		<id column="demand" property="demand" jdbcType="VARCHAR" />
+		<id column="domain_id" property="domainId" jdbcType="INTEGER" />
+		<id column="status" property="status" jdbcType="VARCHAR" />
+		<id column="project_name" property="projectName" jdbcType="VARCHAR" />
+		<id column="project_stage" property="projectStage" jdbcType="VARCHAR" />
+		<id column="project_brief" property="projectBrief" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap type="com.ace.controller.phone.bo.CardBO" id="CardResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="name" property="name" jdbcType="VARCHAR" />
+		<id column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<id column="job" property="job" jdbcType="VARCHAR" />
+		<id column="company_name" property="companyName" jdbcType="VARCHAR" />
+		<id column="email" property="email" jdbcType="VARCHAR" />
+		<id column="websize" property="websize" jdbcType="VARCHAR" />
+		<id column="remark" property="remark" jdbcType="VARCHAR" />
+		<id column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<id column="demand" property="demand" jdbcType="VARCHAR" />
+		<id column="parent" property="parent" jdbcType="VARCHAR" />
+		<id column="domain" property="domain" jdbcType="VARCHAR" />
+		<id column="status" property="status" jdbcType="VARCHAR" />
+		<id column="register_id" property="registerId" jdbcType="INTEGER" />
+		<id column="userName" property="user_name"  jdbcType="VARCHAR" />
+		<id column="project_name" property="projectName" jdbcType="VARCHAR" />
+		<id column="project_stage" property="projectStage" jdbcType="VARCHAR" />
+		<id column="project_brief" property="projectBrief" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,picture,name,telephone,job,company_name,email,websize,remark,create_time,register_id,demand,domain_id,status,project_name,project_stage,project_brief
+	</sql>
+	
+	<sql id="Base_Column_List2">
+		c.id,c.picture,c.name,c.telephone,c.job,c.company_name,c.email,c.websize,c.remark,c.create_time,c.register_id,c.demand,c.domain_id,c.status,c.project_name,c.project_stage,c.project_brief
+	</sql>
+	
+	<sql id="Card_Column_List">
+		c.id,c.picture,c.name,c.telephone,c.job,c.company_name,c.email,c.websize,c.remark,c.create_time,c.demand,c.status,c.register_id,p.name as parent,d.name as domain,r.name as user_name,c.project_name,c.project_stage,c.project_brief
+	</sql>
+	
+	<!-- like company_name -->
+	<select id="getCardListLikeCompanyName" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from tbl_card where 
+		status = 'Y' 
+		<if test="companyName != null and companyName != ''">
+			and company_name like CONCAT('%',#{companyName},'%')
+		</if>
+		order by create_time desc 
+	</select>
+	
+	<select id="getCardListToRegisterIdAndLikeCompanyName" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from tbl_card where 
+		register_id = #{registerId,jdbcType=INTEGER} 
+		<if test="companyName != null and companyName != ''">
+			and company_name like CONCAT('%',#{companyName},'%')
+		</if>
+		order by create_time desc 
+	</select>
+	
+	<select id="getHistoryCardListToRegisterIdAndLikeCompanyName" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List2" /> from tbl_search_log sl left join tbl_card c on sl.card_id = c.id where
+		sl.register_id = #{registerId,jdbcType=INTEGER} 
+		<if test="companyName != null and companyName != ''">
+			and c.company_name like CONCAT('%',#{companyName},'%')
+		</if>
+		order by sl.create_time desc 
+	</select>
+	
+	<!-- like project_name -->
+	<select id="getCardListLikeProjectName" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from tbl_card where 
+		status = 'Y' 
+		<if test="projectName != null and projectName != ''">
+			and project_name like CONCAT('%',#{projectName},'%')
+		</if>
+		order by create_time desc 
+	</select>
+	
+	<!-- to parent_id and like project_name -->
+	<select id="getCardListToParentIdLikeProjectName" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List2" /> from tbl_card c 
+		left join tbl_domain d on c.domain_id = d.id where c.status = 'Y' 
+		<if test="projectName != null and projectName != ''">
+			and c.project_name like CONCAT('%',#{projectName},'%') 
+		</if>
+		<if test="parentId != null and parentId != ''">
+			and d.parent_id = #{parentId,jdbcType=INTEGER} 
+		</if>
+		order by c.create_time desc 
+	</select>
+	
+	
+	<select id="getCardListToRegisterIdAndLikeProjectName" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from tbl_card where 
+		register_id = #{registerId,jdbcType=INTEGER} 
+		<if test="projectName != null and projectName != ''">
+			and project_name like CONCAT('%',#{projectName},'%')
+		</if>
+		order by create_time desc 
+	</select>
+	
+	<select id="getHistoryCardListToRegisterIdAndLikeProjectName" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List2" /> from tbl_search_log sl left join tbl_card c on sl.card_id = c.id where
+		sl.register_id = #{registerId,jdbcType=INTEGER} 
+		<if test="projectName != null and projectName != ''">
+			and c.project_name like CONCAT('%',#{projectName},'%')
+		</if>
+		order by sl.create_time desc 
+	</select>
+	
+	
+	
+	<select id="getCardToTelephone" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from tbl_card where 
+		telephone = #{telephone,jdbcType=VARCHAR} 
+		order by create_time desc 
+	</select>
+	
+	<select id="getCardToEmail" resultMap="BaseResultMap" >
+		select <include refid="Base_Column_List" /> from tbl_card where 
+		email = #{email,jdbcType=VARCHAR} 
+		order by create_time desc 
+	</select>
+	
+	<select id="get" resultMap="CardResultMap">
+		select <include refid="Card_Column_List" /> from tbl_card c 
+		left join tbl_domain d on c.domain_id = d.id  
+		left join tbl_domain p on d.parent_id = p.id 
+		left join tbl_register r on c.register_id = r.id 
+		where c.id = #{id,jdbcType=INTEGER} 
+		order by c.create_time desc 
+	</select>
+	
+	<select id="getCardList" resultMap="CardResultMap">
+		select <include refid="Card_Column_List" /> from tbl_card c 
+		left join tbl_domain d on c.domain_id = d.id  
+		left join tbl_domain p on d.parent_id = p.id 
+		left join tbl_register r on c.register_id = r.id 
+		order by c.create_time desc 
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,135 @@
+/**app.wxss**/
+@import "style/weui.wxss";
+page{
+  height:100%;
+}
+.container {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 160rpx 0;
+  box-sizing: border-box;
+} 
+
+/* list */
+.scroll_view{
+  position: fixed;
+}
+.weui-cells{
+  margin-top: 0;
+}
+
+.weui-search-bar{
+  border-bottom: none;
+}
+.weui-cell__ft{
+  font-size: 12px;
+}
+
+/* footer */
+.page__ft{
+  padding: 10px;
+}
+
+/* 表单css */
+.form{
+  width:100vw;
+}
+
+.image image{
+  width:100vw;
+}
+
+.readonly{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* card */
+.fiveui-clear{
+  clear: both;
+}
+.fiveui-card{
+  -webkit-box-shadow: 0px 0px 10px #C4C4C4;  
+  -moz-box-shadow: 0px 0px 10px #C4C4C4;  
+  box-shadow: 0px 0px 10px #C4C4C4; 
+  width:100%;
+  padding:15px 0px 0px 0px;
+  background: #FFF;
+}
+
+.fiveui-card .fiveui-card-title{
+  padding-left:20px;
+  padding-right:20px;
+}
+
+.fiveui-card .fiveui-card-title .fiveui-card-head{
+  float:left;
+}
+
+.fiveui-card .fiveui-card-title .fiveui-card-user{
+  float:left;
+  padding:15px 0 0 10px;
+  font-size:12px;
+}
+
+.fiveui-card .fiveui-card-title .fiveui-card-user .fiveui-card-name{
+  font-weight: bold;
+  font-size: 24px;
+  padding-right: 5px;
+}
+
+.fiveui-card .fiveui-card-title .fiveui-card-head image{
+  width:50px;
+  height:50px;
+}
+
+.fiveui-group{
+  font-size:14px;
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left:20px;
+  padding-right:20px;
+}
+
+.fiveui-title{
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size:15px;
+}
+/*
+  -webkit-box-shadow: 0px 0px 5px;  
+  -moz-box-shadow: 0px 0px 5px;  
+  box-shadow: 0px 0px 5px; 
+*/
+.fiveui-tag{
+  padding:6px;
+  margin-right: 10px;
+  float:left;
+}
+.fiveui-yellow{
+  background: #EAEAEA;
+}
+.fiveui-blue{
+  background: #B9D6E8;
+}
+.fiveui-hr{
+  border-bottom:0.5px dotted #CCC;
+  padding-bottom:5px;
+}
+
+.fiveui-cell__item{
+  float:left;
+  font-size:14px;
+  margin-right:12px;
+}
+
+.fiveui-tag-bak{
+  background-color:#FBFBFB;
+  padding-top:15px;
+  padding-bottom:15px;
+}

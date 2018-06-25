@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ace.dao.RegisterMapper">
+	<resultMap type="com.ace.entity.Register" id="BaseResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="name" property="name" jdbcType="VARCHAR" />
+		<id column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<id column="park" property="park" jdbcType="VARCHAR" />
+		<id column="wechat_id" property="wechatId" jdbcType="VARCHAR" />
+		<id column="remark" property="remark" jdbcType="VARCHAR" />
+		<id column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<id column="read_count" property="readCount" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,name,telephone,park,wechat_id,remark,create_time,read_count
+	</sql>
+	
+	<select id="getRegisterToTelephone" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from tbl_register 
+		where telephone = #{telephone,jdbcType=VARCHAR} 
+		order by create_time desc 
+	</select>
+	
+	<select id="getRegisterToWechatId" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from tbl_register 
+		where wechat_id = #{wechatId,jdbcType=VARCHAR} 
+		order by create_time desc
+	</select>
+	
+
+</mapper>

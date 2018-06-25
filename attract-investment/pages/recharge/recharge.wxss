@@ -1,0 +1,7 @@
+/* pages/recharge/recharge.wxss */
+.weui-msg__desc{
+  margin-top:15px;
+}
+.weui-msg__extra-area{
+  position: static;
+}

@@ -1,0 +1,71 @@
+<!--me.wxml-->
+<import src="/pages/footer/footer.wxml" />
+<view class="page">
+  <!-- me -->
+  <view class="weui-cells__title"> </view>
+  <view class="weui-cells weui-cells_after-title">
+     <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">
+          <view class="fiveui-cell__item">
+            <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+          </view>
+          <view class="fiveui-cell__item">
+            <view class="name">{{user.name}}</view>
+            <view class="park">{{user.park}}</view>
+            <view class="count">剩余查看次数：{{user.readCount}}</view>
+          </view>
+          <view class="fiveui-clear">
+          </view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+  </view>
+
+  <view class="five-cell__padding"></view>
+
+  <!-- 功能模块 -->
+  <view class="weui-cells__title"> </view>
+  <view class="weui-cells weui-cells_after-title">
+    <navigator url="../user/user?userId={{user.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image class="thumbnail" src="/statics/images/user.png" background-size="cover"></image>
+      </view>
+      <view class="weui-cell__bd">
+        资料修改
+      </view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="../messages/messages" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image class="thumbnail" src="/statics/images/messages.png" background-size="cover"></image>
+      </view>
+      <view class="weui-cell__bd">
+        我的审核
+      </view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+
+  <view class="five-cell__padding"></view>
+
+  <!-- 关于模块 -->
+  <view class="weui-cells__title"></view>
+  <view class="weui-cells weui-cells_after-title">
+    <navigator url="../about/about" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image class="thumbnail" src="/statics/images/about.png" background-size="cover"></image>
+      </view>
+      <view class="weui-cell__bd">
+        关于共享招商
+      </view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+
+  <view class="five-cell__padding"></view>
+
+</view>
+
+<view class="page__ft">
+  <template is="footer"></template>
+</view>

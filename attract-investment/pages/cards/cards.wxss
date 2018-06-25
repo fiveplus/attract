@@ -1,0 +1,29 @@
+/* cards.wxss */
+@import "/wxSearch/wxSearch.wxss";
+.container{
+  padding:0;
+}
+.weui-cells{
+    background-color: #EEE;
+}
+.swiper{
+  height:100%;
+}
+.swiper-tab {  
+  display: flex;  
+  flex-direction: row;  
+} 
+.tab-item {  
+  text-align: center;  
+  font-size: 15px;  
+  color: #777;  
+  width:20%;
+  padding:5px 10px;
+  word-break:keep-all;           /* 不换行 */
+  white-space:nowrap;          /* 不换行 */
+} 
+
+.on {  
+  color: #768CFF;  
+  border-bottom: 5rpx solid #768CFF;  
+} 

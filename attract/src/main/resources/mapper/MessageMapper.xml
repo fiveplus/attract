@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ace.dao.MessageMapper">
+	<resultMap type="com.ace.entity.Message" id="BaseResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="register_id" property="registerId" jdbcType="INTEGER" />
+		<id column="card_id" property="cardId" jdbcType="INTEGER" />
+		<id column="content" property="content" jdbcType="VARCHAR" />
+		<id column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<id column="type" property="type" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id,register_id,card_id,content,create_time,type
+	</sql>
+	
+	<select id="getMessageListToRegisterId" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />	 from tbl_message 
+		where register_id = #{registerId,jdbcType=INTEGER} 	
+		order by create_time desc 
+	</select>
+	
+</mapper>

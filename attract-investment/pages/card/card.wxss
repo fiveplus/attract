@@ -1,0 +1,19 @@
+/* card.wxss */
+.container{
+  padding:0;
+}
+.header{
+  width: 100vw;
+}
+.header image{
+  width:100vw;
+}
+.header .card_title{
+  color:#fff;
+  margin-left:10px; 
+  position: absolute;
+  top:160px;
+}
+.header .card_title view{
+  padding-top:6px;
+}

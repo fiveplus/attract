@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<import src="/pages/footer/footer.wxml" />
+<view class="container">
+  <view class="userinfo">
+    <image bindtap="bindUserTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text bindtap="bindUserTap" class="userinfo-nickname">{{user.name}}</text>
+    <text bindtap="bindViewTap" class="userinfo-num">剩余查看次数 : {{user.readCount}}</text>
+  </view>
+  <view class="usermotto" >
+    <view bindtap="saveCard" class="item red">
+    添加项目
+    </view>
+    <view bindtap="getCardList" class="item blue">
+    项目市场
+    </view>
+    <view bindtap="getMyCardList" class="item green">
+    我的共享
+    </view>
+    <view bindtap="getHistoryList" class="item yellow">
+    历史记录
+    </view>
+  </view>
+</view>
+<view class="page__ft">
+  <template is="footer"></template>
+</view>

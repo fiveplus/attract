@@ -1,0 +1,10 @@
+/* upload.wxss */
+page{
+   background: #efeff4;
+}
+.container{
+  padding:0;
+}
+.padding{
+  padding:0 10px;
+}

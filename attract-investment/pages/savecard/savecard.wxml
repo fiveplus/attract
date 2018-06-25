@@ -1,0 +1,161 @@
+<!--savecard.wxml-->
+<import src="/pages/footer/footer.wxml" />
+<view class="weui-toptips weui-toptips_warn" wx:if="{{msg}}">{{msg}}</view>
+<view class="container">
+  <form bindsubmit="formSubmit" class="form">
+    <view class="image">
+      <image mode="scaleToFill" src="{{tempFilePath}}"></image>
+    </view>
+    <view class="weui-cells__title">请填写名片联系信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <!-- 姓名 -->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">姓名</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="picture" hidden="true" value="{{picture}}"  />
+          <input name="registerId" hidden="true" value="{{user.id}}" />
+          <input name="name" class="weui-input" placeholder="请输入姓名" focus="true" maxlength="20" />
+        </view>
+      </view>
+      <!-- 联系电话 -->
+      <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">联系电话</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="telephone" class="weui-input" placeholder="请输入联系电话" type="number" maxlength="11" />
+        </view>
+      </view>
+      <!-- 职位 -->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">职位</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="job" class="weui-input" placeholder="请输入职位"  maxlength="10" />
+        </view>
+      </view>
+      <!-- Email -->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">E-mail</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="email" class="weui-input" placeholder="请输入E-mail"  maxlength="30" />
+        </view>
+      </view>
+
+    </view>
+    <view class="weui-cells__title">请填写名片公司信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <!-- 公司名称 -->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">公司名称</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="companyName" class="weui-input" placeholder="请输入公司名称"  maxlength="30" />
+        </view>
+      </view>
+      <!-- 官方网站 -->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">官方网站</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="websize" class="weui-input" placeholder="请输入官方网站"  maxlength="100" />
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__title">请填写意向信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">相关领域</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker bindchange="getChildList" mode="selector" range="{{parents}}" range-key="name" value="{{index}}" >
+            <view class="weui-select weui-select_in-select-after" wx:if="{{pindex>-1}}">
+              {{parents[pindex].name}}
+            </view>
+            <view class="weui-select weui-select_in-select-after" wx:if="{{pindex==-1}}">
+              请选择
+            </view>
+          </picker>
+          <picker name="domainId" bindchange="getDomain" mode="selector" range="{{domains}}" range-key="name" value="{{index}}" >
+            <view class="weui-select weui-select_in-select-after" wx:if="{{cindex>-1}}">
+              {{domains[cindex].name}}
+            </view>
+            <view class="weui-select weui-select_in-select-after" wx:if="{{cindex==-1}}">
+              请选择
+            </view>
+          </picker>
+        </view>
+      </view>
+
+    </view>
+
+    <!-- 所需服务 -->
+    <view class="weui-cells__title">所需服务</view>
+    
+    <view class="weui-cells weui-cells_after-title">
+      <checkbox-group bindchange="checkboxChange" name="demand">
+        <label class="weui-cell weui-check__label" wx:for="{{demands}}" wx:key="name">
+          <checkbox class="weui-check" value="{{item.name}}" checked="{{item.checked}}" />
+           <view class="weui-cell__hd weui-check__hd_in-checkbox">
+            <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+            <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+           </view>
+           <view class="weui-cell__bd">{{item.name}}</view>
+        </label>
+      </checkbox-group>
+    </view>
+
+    
+    <view class="weui-cells__title">请填写项目信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <!-- 项目名称 -->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">项目名称</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="projectName" class="weui-input" placeholder="请输入项目名称"  maxlength="50" />
+        </view>
+      </view>
+      <!-- 项目阶段 -->
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">项目阶段</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker name="projectStage" bindchange="setStageIndex" mode="selector" range="{{stages}}" range-key="value" value="{{index}}" >
+            <view class="weui-select weui-select_in-select-after">
+              {{stages[sindex].value}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <!-- 项目简介 -->
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea name="projectBrief" class="weui-textarea" placeholder="请输入项目简介" style="height: 4.3em" maxlength="300" />
+          <!-- 
+          <view class="weui-textarea-counter">0/300</view>
+          -->
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" form-type="submit" type="primary" >提交</button>
+    </view>
+
+  </form>
+</view>
+
+<view class="page__ft">
+  <template is="footer"></template>
+</view>

@@ -1,0 +1,16 @@
+<!--about.wxml-->
+<import src="/pages/footer/footer.wxml" />
+<view class="container">
+  <view>
+    <image class="logo" background-size="cover" src="/statics/images/logo.png"></image>
+  </view>
+  <view>
+    共享招商+
+  </view>
+  <view class="version">
+    Version 2.1.4
+  </view>
+</view>
+<view class="page__ft">
+  <template is="footer"></template>
+</view>

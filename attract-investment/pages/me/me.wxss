@@ -1,0 +1,27 @@
+/* me.wxss */
+page{
+  background-color:#F8F8F8;
+}
+.userinfo-avatar{
+  width:60px; 
+  height:60px;
+}
+.fiveui-cell__item .name{
+  margin: 2px;
+}
+.fiveui-cell__item .park{
+  margin:2px;
+}
+.fiveui-cell__item .count{
+  color:#999;
+  margin:2px;
+}
+.five-cell__padding{
+  padding:5px;
+}
+.thumbnail{
+  width:16px;
+  height:19px;
+  margin-right:6px;
+  margin-top:3px;
+}

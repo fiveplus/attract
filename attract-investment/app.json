@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/cards/cards",
+    "pages/savecard/savecard",
+    "pages/card/card",
+    "pages/register/register",
+    "pages/success/success",
+    "pages/fail/fail",
+    "pages/mycards/mycards",
+    "pages/messages/messages",
+    "pages/mycard/mycard",
+    "pages/upload/upload",
+    "pages/historys/historys",
+    "pages/user/user",
+    "pages/me/me",
+    "pages/about/about",
+    "pages/recharge/recharge"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#373a41",
+    "navigationBarTitleText": "共享招商+",
+    "navigationBarTextStyle": "white"
+  }
+}

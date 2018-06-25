@@ -1,0 +1,407 @@
+<div th:fragment="main">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+		</script>
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home home-icon"></i>
+				<a th:href="@{/admin/}">Home</a>
+			</li>
+			<li>
+				<a th:href="@{/admin/card/list/1}">名片管理</a>
+			</li>
+			<li class="active">名片新增</li>
+		</ul><!-- .breadcrumb -->
+
+		<div class="nav-search" id="nav-search">
+			<form action="" method="post" onsubmit="return false;" class="form-search">
+				<span class="input-icon">
+					<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<i class="icon-search nav-search-icon"></i>
+				</span>
+			</form>
+		</div><!-- #nav-search -->
+	</div>
+	
+	<div class="page-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+				<div class="page-header">
+					<h1>名片新增
+					<small>
+						<i class="icon-double-angle-right">
+						请输入名片详细资料
+						</i>
+					</small>
+					</h1>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<form th:action="@{/admin/card/save}" role="form" class="form-horizontal" method="post" id="form_post" >
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入姓名 </label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="姓名" class="col-xs-10 col-sm-5" name="name"  />
+									<font style="color:red; height:25px;line-height:25px;overflow:hidden;"><b>&nbsp;*</b></font>
+								</div>
+							</div>
+							<div class="space-4"></div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入联系电话 </label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="联系电话" class="col-xs-10 col-sm-5" name="telephone"  />
+									<font style="color:red; height:25px;line-height:25px;overflow:hidden;"><b>&nbsp;*</b></font>
+								</div>
+							</div>
+							<div class="space-4"></div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入职位 </label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="职位" class="col-xs-10 col-sm-5" name="job"  />
+									<font style="color:red; height:25px;line-height:25px;overflow:hidden;"><b>&nbsp;*</b></font>
+								</div>
+							</div>
+							<div class="space-4"></div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入E-mail </label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="E-mail" class="col-xs-10 col-sm-5" name="email"  />
+									<font style="color:red; height:25px;line-height:25px;overflow:hidden;"><b>&nbsp;*</b></font>
+								</div>
+							</div>
+							<div class="space-4"></div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入公司名称 </label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="公司名称" class="col-xs-10 col-sm-5" name="companyName"  />
+									<font style="color:red; height:25px;line-height:25px;overflow:hidden;"><b>&nbsp;*</b></font>
+								</div>
+							</div>
+							<div class="space-4"></div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入官方网站 </label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="官方网站" class="col-xs-10 col-sm-5" name="websize"  />
+									<font style="color:red; height:25px;line-height:25px;overflow:hidden;"><b>&nbsp;*</b></font>
+								</div>
+							</div>
+							<div class="space-4"></div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请选择相关领域 </label>
+								<div class="col-sm-9">
+									<select id="parents_select" onchange="change_parent(this)">
+										<option value="">请选择</option>
+									</select>
+									<select name="domainId">
+										<option value="">请选择</option>
+									</select>
+								</div>
+							</div>
+							<div class="space-4"></div>
+							
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请选择所需服务 </label>
+								<div class="col-sm-9">
+									<div class="checkbox" th:each="demand,stat:${demands}">
+										<label >
+											<input name="demands" type="checkbox" class="ace" th:value="${demand.name}" th:checked="${demand.checked}"  />
+											<span class="lbl" th:text="' '+${demand.name}"></span>
+										</label>
+									</div>
+									<input type="hidden" name="demand" value="" />
+								</div>
+							</div>
+							<div class="space-4"></div>
+							
+							<div class="form_group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入项目名称 </label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="项目名称" class="col-xs-10 col-sm-5" name="projectName"  />
+									<font style="color:red; height:25px;line-height:25px;overflow:hidden;"><b>&nbsp;*</b></font>
+								</div>
+							</div>&nbsp;
+							<div class="space-4"></div>
+							
+							<div class="form_group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">请选择项目阶段</label>	
+								<div class="col-sm-9">
+									<select name="projectStage">
+										<option th:each="stage,stat:${stages}" th:value="${stage.key}" th:text="${stage.value}"></option>
+									</select>
+								</div>
+							</div>&nbsp;
+							<div class="space-4"></div>
+							
+							<div class="form-group" >
+								<h4 class="header green clearfix" >
+									请输入项目简介
+									<span class="block pull-right">
+										<small class="grey middle">Choose style: &nbsp;</small>
+			
+										<span class="btn-toolbar inline middle no-margin">
+											<span data-toggle="buttons" class="btn-group no-margin">
+												<label class="btn btn-sm btn-yellow">
+													1
+													<input type="radio" value="1" />
+												</label>
+			
+												<label class="btn btn-sm btn-yellow active">
+													2
+													<input type="radio" value="2" />
+												</label>
+			
+												<label class="btn btn-sm btn-yellow">
+													3
+													<input type="radio" value="3" />
+												</label>
+											</span>
+										</span>
+									</span>
+								</h4>
+								<div class="wysiwyg-editor" id="editor1" ></div>
+								<input type="hidden" name="projectBrief"  />
+							</div>
+							<div class="space-4"></div>
+							
+							<div class="clearfix form-actions">
+								<div class="col-md-offset-3 col-md-9">
+									<button class="btn btn-info" type="button" onclick="form_submit('form_post')">
+										<i class="icon-ok bigger-110"></i>
+										提交
+									</button>
+	
+									&nbsp; &nbsp; &nbsp;
+									<button class="btn" type="reset" onclick="history.go(-1)">
+										<i class="icon-undo bigger-110"></i>
+										返回
+									</button>
+								</div>
+							</div>
+						
+						
+						</form>
+					</div>				
+				</div>
+				<!-- PAGE CONTENT ENDS -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.page-content -->
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		   	function form_submit(id){
+		   		bootbox.confirm("确认新增?",function(result){
+					if(result){
+						var form = $("#"+id);
+						var html = $("#editor1").html();
+						$("#"+id+" [name='remark']").val(html);
+						//字段不为空验证 
+						var name = form.find("input[name='name']").val().trim();
+						var telephone = form.find("input[name='telephone']").val().trim();
+						var job = form.find("input[name='job']").val().trim();
+						var companyName = form.find("input[name='companyName']").val().trim();
+						var email = form.find("input[name='email']").val().trim();
+						var websize = form.find("input[name='websize']").val().trim();
+						var domainId = form.find("select[name='domainId']").val().trim();
+						var demands = form.find("input[name='demands']:checked").val();
+						demands = demands == undefined ? "" : demands.join(',');
+						form.find("input[name='demand']").val(demands);
+						form.find("input[name='projectBrief']").val($("#editor1").html().trim());
+						var brief = form.find("input[name='projectBrief']").val();
+						var stage = form.find("select[name='projectStage']").val();
+						var projectName = form.find("input[name='projectName']").val().trim();
+						
+						if(name == null || name == ''){
+							ace_msg.danger("很抱歉，姓名不能为空！");
+							return;
+						}
+						
+						if(telephone == null || telephone == ''){
+							ace_msg.danger("很抱歉，联系电话不能为空！");
+							return;
+						}
+						
+						if(!checkMobile(telephone)){
+							ace_msg.danger("很抱歉，联系电话格式错误！");
+							return;
+						}
+						
+						if(job == null || job == ''){
+							ace_msg.danger("很抱歉，职位不能为空！");
+							return;
+						}
+						
+						if(companyName == null || companyName == ''){
+							ace_msg.danger("很抱歉，公司名称不能为空！");
+							return;
+						}
+						
+						if(email == null || email == ''){
+							ace_msg.danger("很抱歉，E-mail不能为空！");
+							return;
+						}
+						
+						if(!checkEmail(email)){
+							ace_msg.danger("很抱歉，E-mail格式错误！");
+							return;
+						}
+						
+						if(websize == null || websize == ''){
+							ace_msg.danger("很抱歉，官方网站不能为空！");
+							return;
+						}
+						
+						if(domainId == null || domainId == ''){
+							ace_msg.danger("很抱歉，相关领域不能为空！");
+							return;
+						}
+						
+						if(demands == null || demands == ''){
+							ace_msg.danger("很抱歉，所需服务不能为空！");
+							return;
+						}
+						
+						if(stage == null || stage == ''){
+							ace_msg.danger("很抱歉，项目阶段不能为空！");
+							return;
+						}
+						
+						if(projectName == null || projectName == ''){
+							ace_msg.danger("很抱歉，项目名称不能为空！");
+							return;
+						}
+						
+						if(brief == null && brief == ''){
+							ace_msg.danger("很抱歉，项目简介不能为空！");
+							return;
+						}
+						
+						
+						var datas = form.serialize();
+						$.ajax({
+							url:form.attr('action'),
+							type:"POST",
+							data:datas,
+							dataType:'json',
+							success:function(data){
+								if(data.code == 0){
+									ace_msg.success(data.msg);
+									go_back();
+								}else{
+									ace_msg.danger(data.msg);
+								}
+							},
+							error:function(data){
+								//console.log(data);
+							}
+						});
+					}
+		   		});
+			}
+		
+			function parent_init(){
+				var contextPath = [[${contextPath}]];
+				var parent_obj = $("#parents_select");
+				$.ajax({
+					url:contextPath+"/admin/domain/parents",
+					type:"POST",
+					dataType:'json',
+					success:function(data){
+						var html = "";
+						if(data.code == 0){
+							var parents = data.parents;
+							for(var i = 0;i<parents.length;i++){
+								html += ("<option value='"+parents[i].id+"'>"+parents[i].name+"</option>");
+							}
+							parent_obj.append(html);
+						}
+					}
+				});
+			}
+			
+			function change_parent(obj){
+				var contextPath = [[${contextPath}]];
+				var val = obj.value;
+				var child_obj = $("#form_post select[name='domainId']");
+				$.ajax({
+					url:contextPath+"/admin/domain/childs",
+					type:"POST",
+					data:{parentId:val},
+					dataType:'json',
+					success:function(data){
+						var html = "<option value=''>请选择</option>";
+						if(data.code == 0){
+							var childs = data.childs;
+							for(var i = 0;i<childs.length;i++){
+								html += "<option value='"+childs[i].id+"'>"+childs[i].name+"</option>";
+							}
+							child_obj.html(html);
+						}
+					}
+				});
+			}
+		
+			$(document).ready(function(){
+				
+				parent_init();
+				
+				function showErrorAlert (reason, detail) {
+					var msg='';
+					if (reason==='unsupported-file-type') { 
+						msg = "Unsupported format " +detail; 
+					}else {
+						console.log("error uploading file", reason, detail);
+					}
+					$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
+						 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
+				}
+				
+				$('#editor1').ace_wysiwyg({
+					toolbar:
+					[
+						'font',
+						null,
+						'fontSize',
+						null,
+						{name:'bold', className:'btn-info'},
+						{name:'italic', className:'btn-info'},
+						{name:'strikethrough', className:'btn-info'},
+						{name:'underline', className:'btn-info'},
+						null,
+						{name:'insertunorderedlist', className:'btn-success'},
+						{name:'insertorderedlist', className:'btn-success'},
+						{name:'outdent', className:'btn-purple'},
+						{name:'indent', className:'btn-purple'},
+						null,
+						{name:'justifyleft', className:'btn-primary'},
+						{name:'justifycenter', className:'btn-primary'},
+						{name:'justifyright', className:'btn-primary'},
+						{name:'justifyfull', className:'btn-inverse'},
+						null,
+						{name:'createLink', className:'btn-pink'},
+						{name:'unlink', className:'btn-pink'},
+						null,
+						{name:'insertImage', className:'btn-success'},
+						null,
+						'foreColor',
+						null,
+						{name:'undo', className:'btn-grey'},
+						{name:'redo', className:'btn-grey'}
+					],
+					'wysiwyg': {
+						fileUploadError: showErrorAlert
+					}
+				}).prev().addClass('wysiwyg-style2');
+			});
+		
+		/*]]>*/
+	</script>
+</div>

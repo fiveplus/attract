@@ -1,0 +1,62 @@
+<!--mycards.wxml-->
+<!-- 模版导入 -->
+<import src="/wxSearch/wxSearch.wxml" />
+<view class="weui-search-bar">
+  <view class="weui-search-bar__form">
+    <view class="weui-search-bar__box">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{wxSearchData.value}}" bindfocus="wxSerchFocus" bindinput="wxSearchInput" bindblur="wxSearchBlur" bindconfirm="searchCard"  />
+      <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 主体 -->
+<scroll-view class="scroll_view" scroll-y="true" bindscrolltoupper="pullDownRefresh" bindscrolltolower="pullUpLoad" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+  
+  <view class="weui-cells">
+    <!-- 
+    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" data-id="{{item.id}}" bindtap="getCard" wx:for="{{cards}}" wx:key="id" >
+      <view class="weui-cell__bd">{{item.name}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">{{item.companyName}}</view>
+    </view>
+    -->
+
+    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" data-id="{{item.id}}" bindtap="getCard" wx:for="{{cards}}" wx:key="id">
+      <view class="fiveui-card">
+        <view class="fiveui-card-title">
+          <view class="fiveui-card-head">
+            <image src="/statics/images/head.png"  />
+          </view>
+          <view class="fiveui-card-user">
+            <label class="fiveui-card-name">{{item.name}}</label> {{item.job}}
+          </view>
+          <view class="fiveui-clear"></view>
+        </view>
+        <view class="fiveui-card-body">
+          <view class="fiveui-group">
+            <view class="fiveui-title">{{item.projectName}}</view>
+          </view>
+          <view class="fiveui-group fiveui-tag-bak">
+            <view class="fiveui-tag fiveui-blue">{{item.projectStage}}</view>
+            <view class="fiveui-tag fiveui-yellow">{{item.demand}}</view>
+            <view class="fiveui-clear"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  
+  
+
+  <view class="weui-loadmore" wx:if="{{loading}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loading__tips">正在加载</view>
+  </view>
+  <view class="weui-loadmore weui-loadmore_line" wx:if="{{nomore}}">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+  </view>
+</scroll-view>
+<template is="wxSearch" data="{{wxSearchData}}" />

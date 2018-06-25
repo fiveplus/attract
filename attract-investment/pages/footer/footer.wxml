@@ -1,0 +1,6 @@
+<!--footer.wxml-->
+<template name="footer">
+  <view class="weui-footer">
+            <view class="weui-footer__text">Copyright © 2016-2024 bioppp.com</view>
+        </view>
+</template>

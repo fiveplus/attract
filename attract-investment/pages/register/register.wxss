@@ -1,0 +1,10 @@
+/* register.wxss */
+page{
+   background: #efeff4;
+}
+.container{
+  padding:0;
+}
+.image-view{
+  padding : 0;
+}

@@ -1,0 +1,148 @@
+<!--card.wxml-->
+<import src="/pages/footer/footer.wxml" />
+<view class="container">
+  <view class="header">
+    <image mode="scaleToFill" src="{{card.picture}}" wx:if="{{checked}}"></image>
+    <image mode="scaleToFill" src="{{picture}}" wx:if="{{!checked}}"></image>
+    <!--
+    <view class="card_title">
+      <view>{{card.name}}</view>
+      <view>{{card.companyName}}</view>
+    </view>
+    -->
+    <view class="weui-panel weui-panel_access">
+      <!-- 全部资料 -->
+      <view class="weui-panel__bd">
+        <!-- 基本资料 -->
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" style="white-space:normal;">
+          {{card.name}}
+          </view>
+          <view class="weui-media-box__desc">
+          姓名
+          </view>
+        </view>
+
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" wx:if="{{!checked}}" style="white-space:normal;">
+          ******
+          </view>
+          <view class="weui-media-box__title weui-media-box__title_in-text" wx:if="{{checked}}" style="white-space:normal;">
+          {{card.companyName}}
+          </view>
+          <view class="weui-media-box__desc">
+          公司
+          </view>
+        </view>
+        
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" wx:if="{{!checked}}" style="white-space:normal;">
+          ******
+          </view>
+          <view class="weui-media-box__title weui-media-box__title_in-text" wx:if="{{checked}}" bindtap="callMe" style="white-space:normal;">
+          {{card.telephone}}
+          </view>
+          <view class="weui-media-box__desc">
+          手机
+          </view>
+        </view>
+
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" wx:if="{{!checked}}" style="white-space:normal;">
+          ******
+          </view>
+          <view class="weui-media-box__title weui-media-box__title_in-text" wx:if="{{checked}}" style="white-space:normal;">
+          {{card.email}}
+          </view>
+          <view class="weui-media-box__desc">
+          工作
+          </view>
+        </view>
+
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" style="white-space:normal;">
+          {{card.job}}
+          </view>
+          <view class="weui-media-box__desc">
+          职称
+          </view>
+        </view>
+
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" wx:if="{{!checked}}" style="white-space:normal;">
+          ******
+          </view>
+          <view class="weui-media-box__title weui-media-box__title_in-text" wx:if="{{checked}}" style="white-space:normal;">
+          {{card.websize}} 
+          </view>
+          <view class="weui-media-box__desc">
+          官网
+          </view>
+        </view>
+
+        <!-- 意向资料 -->
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" style="white-space:normal;">
+          {{card.domain}} 
+          </view>
+          <view class="weui-media-box__desc">
+          相关领域
+          </view>
+        </view>
+
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" style="white-space:normal;">
+          {{card.demand}} 
+          </view>
+          <view class="weui-media-box__desc">
+          所需服务
+          </view>
+        </view>
+
+        <!-- 项目资料 -->
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" style="white-space:normal;">
+          {{card.projectName}} 
+          </view>
+          <view class="weui-media-box__desc">
+          项目名称
+          </view>
+        </view>
+
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" style="white-space:normal;">
+          {{card.projectStage}} 
+          </view>
+          <view class="weui-media-box__desc">
+          项目阶段
+          </view>
+        </view>
+
+
+
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" style="white-space:normal;">
+          {{card.projectBrief}}
+          </view>
+          <view class="weui-media-box__desc">
+          项目简介
+          </view>
+        </view>
+
+        
+        
+      </view>
+      
+    </view>
+
+
+    <view class="weui-btn-area" wx:if="{{!checked}}">
+      <button class="weui-btn" type="primary" bindtap="bindSearch" >查看</button>
+    </view>
+
+  </view>
+</view> 
+
+<view class="page__ft">
+  <template is="footer"></template>
+</view>

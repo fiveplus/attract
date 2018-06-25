@@ -1,0 +1,8 @@
+/* historys.wxss */
+@import "/wxSearch/wxSearch.wxss";
+.container{
+  padding:0;
+}
+.weui-cells{
+    background-color: #EEE;
+}

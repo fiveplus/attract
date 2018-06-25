@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ace.dao.SysLogMapper">
+	<resultMap type="com.ace.entity.SysLog" id="BaseResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="content" property="content" jdbcType="VARCHAR" />
+		<id column="user_id" property="userId" jdbcType="VARCHAR" />
+		<id column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<id column="create_user" property="createUser" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,content,user_id,create_time,create_user
+	</sql>
+
+</mapper>

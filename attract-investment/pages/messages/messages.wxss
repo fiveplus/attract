@@ -1,0 +1,10 @@
+/* messages.wxss */
+.container{
+  padding-top:0px;
+}
+.thumbnail{
+  width:16px;
+  height:19px;
+  margin-right:6px;
+  margin-top:3px;
+}

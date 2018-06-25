@@ -1,0 +1,37 @@
+<!--messages.wxml-->
+<!-- 主体 -->
+<view wx:if="{{messages.length>0}}" class="weui-cells__title">我的历史消息</view>
+<scroll-view wx:if="{{messages.length > 0}}" scroll-y="true" bindscrolltoupper="pullDownRefresh" bindscrolltolower="pullUpLoad" >
+  <view class="weui-cells">
+    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" data-id="{{item.id}}" bindtap="getMessage" wx:for="{{messages}}" wx:key="id" >
+      <!-- 通过图标 -->
+      <view wx:if="{{item.type==0}}" class="weui-cell__hd">
+        <image class="thumbnail" src="/statics/images/type_0.png" background-size="cover"></image>
+      </view>
+      <!-- 未通过图标 -->
+      <view wx:if="{{item.type==1}}" class="weui-cell__hd">
+        <image class="thumbnail" src="/statics/images/type_1.png" background-size="cover"></image>
+      </view>
+      <view class="weui-cell__bd">{{item.content}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+  </view>
+
+  
+
+  <view class="weui-loadmore" wx:if="{{loading}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loading__tips">正在加载</view>
+  </view>
+
+  <view class="weui-loadmore weui-loadmore_line" wx:if="{{nomore}}">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+  </view>
+  
+</scroll-view>
+
+<view wx:if="{{messages.length==0}}" class="container">
+  <view class="weui-loadmore weui-loadmore_line">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+  </view>
+</view>

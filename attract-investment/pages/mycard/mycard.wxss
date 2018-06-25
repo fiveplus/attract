@@ -1,0 +1,7 @@
+/* mycard.wxss */
+page{
+   background: #efeff4;
+}
+.container{
+  padding:0;
+}

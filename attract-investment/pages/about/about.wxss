@@ -1,0 +1,10 @@
+/* about.wxss */
+.logo{
+  width:100px;
+  height: 100px;
+}
+.version{
+  font-size:14px;
+  color:#999;
+  padding:10px;
+}

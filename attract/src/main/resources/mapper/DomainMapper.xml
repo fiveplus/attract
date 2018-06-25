@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ace.dao.DomainMapper">
+	<resultMap type="com.ace.entity.Domain" id="BaseResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="name" property="name" jdbcType="VARCHAR" />
+		<id column="english_name" property="englishName" jdbcType="VARCHAR" />
+		<id column="english_short" property="englishShort" jdbcType="VARCHAR" />
+		<id column="information" property="information" jdbcType="VARCHAR" />
+		<id column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<id column="parent_id" property="parentId" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,name,english_name,english_short,information,create_time,parent_id
+	</sql>
+	
+	<select id="getDomainParentList" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from tbl_domain where 
+		parent_id is null 
+	</select>
+	
+	<select id="getDomainChildsToParentId" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from tbl_domain where 
+		parent_id = #{parentId,jdbcType=INTEGER} 
+	</select>
+	
+	<select id="getDomainChildToName" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from tbl_domain where 
+		parent_id is not null and name = #{name,jdbcType=VARCHAR} 
+	</select>
+	
+	
+
+</mapper>

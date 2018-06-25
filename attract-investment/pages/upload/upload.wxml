@@ -1,0 +1,20 @@
+<!--upload.wxml-->
+<import src="/pages/footer/footer.wxml" />
+<view class="weui-toptips weui-toptips_warn" wx:if="{{msg}}">{{msg}}</view>
+<view class="container">
+  <form class="form">
+    <view class="weui-cells__title">请选择名片/拍照上传</view>
+    <view class="image">
+      <image mode="scaleToFill" src="{{tempFilePath}}"></image>
+    </view>
+    
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="default" bindtap="chooseimage" disabled="{{disabled}}">选择名片</button>
+      <button class="weui-btn" type="primary" bindtap="next"  disabled="{{disabled}}">下一步</button>
+    </view>
+  </form>
+</view>
+<view class="page__ft">
+  <template is="footer"></template>
+</view>
